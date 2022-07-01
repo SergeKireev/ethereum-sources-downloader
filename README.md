@@ -16,10 +16,10 @@ install executable package globally:
 ```
 npm run build
 cd ..
-npm i -g ethereum-downloader
+npm i -g ethereum-sources-downloader
 ```
 
 use:
 ```
-ethereum-downloader download etherscan 0x1F98431c8aD98523631AE4a59f267346ea31F984
+ethereum-sources-downloader download etherscan 0x1F98431c8aD98523631AE4a59f267346ea31F984
 ```
