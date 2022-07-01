@@ -45,4 +45,6 @@ apiName is one of:
  - testnet.snowtrace
  - cronoscan
 
- contract address in hexadecimal format (i.e 0x1F98431c8aD98523631AE4a59f267346ea31F984)
+ contractAddress in hexadecimal format (i.e 0x1F98431c8aD98523631AE4a59f267346ea31F984)
+
+ outDir specifies optionally where the sources will be downloaded relative to current directory
