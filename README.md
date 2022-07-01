@@ -3,23 +3,46 @@
 Adapted code from the great https://github.com/dethcrypto/dethcode
 to be able to download the code of a smart contract locally
 
-# Usage
+# Installation 
 
-install dependencies 
-
-```
-npm i
-```
-
-install executable package globally:
+## Install from npm
 
 ```
-npm run build
-cd ..
 npm i -g ethereum-sources-downloader
 ```
 
-use:
+## Install from sources
 ```
-ethereum-sources-downloader download etherscan 0x1F98431c8aD98523631AE4a59f267346ea31F984
+npm i
+cd ..
+npm i -g ethereum-sources-downloader/
 ```
+
+# Usage
+```
+ethereum-sources-downloader {apiName} {contractAddress} {optional:outDir}
+```
+
+apiName is one of:
+ - etherscan
+ - ropsten.etherscan
+ - rinkeby.etherscan
+ - goerli.etherscan
+ - kovan.etherscan
+ - bscscan
+ - testnet.bscscan
+ - hecoinfo
+ - testnet.hecoinfo
+ - ftmscan
+ - testnet.ftmscan
+ - optimistic.etherscan
+ - kovan-optimistic.etherscan
+ - polygonscan
+ - testnet.polygonscan
+ - arbiscan
+ - testnet.arbiscan
+ - snowtrace
+ - testnet.snowtrace
+ - cronoscan
+
+ contract address in hexadecimal format (i.e 0x1F98431c8aD98523631AE4a59f267346ea31F984)
