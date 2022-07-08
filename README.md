@@ -47,4 +47,9 @@ apiName is one of:
 
  contractAddress in hexadecimal format (i.e 0x1F98431c8aD98523631AE4a59f267346ea31F984)
 
- outDir specifies optionally where the sources will be downloaded relative to current directory
+ outDir specifies optionally where the sources will be downloaded relative to current director
+
+
+## CLI Tool Demo
+
+![](./essdemo.gif)
