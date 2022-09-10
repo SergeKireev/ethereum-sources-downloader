@@ -23,6 +23,7 @@ export const explorerApiUrls = {
   "testnet.snowtrace": "https://api-testnet.snowtrace.io/api",
   cronoscan: "https://api.cronoscan.com/api",
   moonbeam: 'https://api-moonbeam.moonscan.io/api',
+  aurora: 'https://api.aurorascan.dev/api'
 };
 
 /**
@@ -55,6 +56,7 @@ export const networkNames: Record<ApiName, string> = {
   "testnet.snowtrace": "avalancheTestnet",
   cronoscan: "cronos",
   moonbeam: 'moonbeam',
+  aurora: 'aurora'
 };
 
 const ETHERSCAN_KEY = "862Y3WJ4JB4B34PZQRFEV3IK6SZ8GNR9N5";
@@ -66,6 +68,7 @@ const ARBISCAN_KEY = "X3ZWJBXC14HTIR3B9DNYGEUICEIKKZ9ENZ";
 const POLYGONSCAN_KEY = "RV4YXDXEMIHXMC7ZXB8T82G4F56FRZ1SZQ";
 const CRONOSCAN_KEY = "BGAN1CWT8E1A2XRS3FU61UP7XXFMHBWNSY";
 const MOONBEAM_KEY = "FENPKQI49RF2P916SQ2J58BTDMU69PQY8Y";
+const AURORA_KEY = "F2JS84SQHM53V4T3AN2CSX6ZHUAXFSHJ8Y";
 
 export const explorerApiKeys: Record<ApiName, string> = {
   etherscan: ETHERSCAN_KEY,
@@ -96,5 +99,6 @@ export const explorerApiKeys: Record<ApiName, string> = {
   "testnet.snowtrace": SNOWTRACE_KEY,
 
   cronoscan: CRONOSCAN_KEY,
-  moonbeam: MOONBEAM_KEY
+  moonbeam: MOONBEAM_KEY,
+  aurora: AURORA_KEY
 };
