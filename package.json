@@ -1,7 +1,7 @@
 {
   "name": "ethereum-sources-downloader",
   "license": "MIT",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "bin": {
     "ethereum-sources-downloader": "dist/index.js"
   },
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "https://github.com/SergeKireev/ethereum-sources-downloader"
   },
+  "main": "dist/lib.js",
   "dependencies": {
     "commander": "^9.3.0",
     "fast-json-stable-stringify": "^2.1.0",
