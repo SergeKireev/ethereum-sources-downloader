@@ -90,12 +90,12 @@ export const fetch = reuseable(
     if (response.status === 403) {
       // if there is no token saved and the rate limit exceeded,
       // open the authorizing overly for requesting a access token
-      return response.json().then((data) => {
+      return response.json().then((data: any) => {
         throw new RequestForbiddenError(prettyStringify(data));
       });
     }
     if (response.status === 401) {
-      return response.json().then((data) => {
+      return response.json().then((data: any) => {
         throw new RequestUnauthorizedError(prettyStringify(data));
       });
     }

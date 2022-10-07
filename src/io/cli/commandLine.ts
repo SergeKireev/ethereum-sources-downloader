@@ -23,6 +23,7 @@ cli
   .action((apiName: ApiName, contractAddress: string, outDir: string) => {
     validateExplorerApiName(apiName);
     saveContractFilesToFs(
+      //@ts-ignore
       fse,
       apiName,
       contractAddress,

@@ -5,7 +5,6 @@
     "module": "commonjs",
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "noImplicitAny": false,
     "removeComments": false,
     "target": "es6",
     "rootDir": "src",

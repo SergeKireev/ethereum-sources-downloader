@@ -24,6 +24,7 @@
     "ts-essentials": "^9.0.0"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.0.0",
     "@types/node-fetch": "^2.6.2",
     "@types/vscode": "^1.63.0",
