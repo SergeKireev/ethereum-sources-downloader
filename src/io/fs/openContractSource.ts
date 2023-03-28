@@ -11,7 +11,7 @@ export async function saveContractFilesToFs(
   apiName: explorer.ApiName,
   address: string,
   logger: Logger,
-  outDir?: string,
+  outDir?: string
 ) {
   let result: explorer.FetchFilesResult;
 
@@ -21,7 +21,8 @@ export async function saveContractFilesToFs(
   const entries = Object.entries(result.files);
   for (const [_filePath, content] of entries) {
     const filePath = path.join(outDir || 'out', _filePath)
-    fs.outputFile(filePath, content, (err) => {
+    const _content = content.replace(/\r/g, '');
+    fs.outputFile(filePath, _content, (err) => {
       if (err) {
         logger.log("Error writing file", err)
       } else {

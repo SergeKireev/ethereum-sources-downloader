@@ -11,6 +11,7 @@
 
 import { reuseable } from "./func";
 import { prettyStringify } from "./stringify";
+//@ts-ignore
 import _fetch, { Response as _Response } from 'node-fetch';
 
 export class RequestError extends Error {
@@ -102,7 +103,7 @@ export const fetch = reuseable(
     if (response.status === 404) {
       throw new RequestNotFoundError("Not Found");
     }
-    const responseJson = (await response.json().catch((e) => {
+    const responseJson = (await response.json().catch((e: any) => {
       console.error(e);
     }))
     throw new RequestError(

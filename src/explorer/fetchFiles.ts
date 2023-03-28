@@ -23,20 +23,16 @@ interface FetchFilesOptions {
 export async function fetchFiles(
   apiName: ApiName,
   contractAddress: string,
-  { fetch = _fetch, proxyDepth = 3 }: FetchFilesOptions = {}
+  { fetch = _fetch, proxyDepth = 3 }: FetchFilesOptions = {},
+  useApiKey: boolean = true
 ): Promise<FetchFilesResult> {
   const apiUrl = explorerApiUrls[apiName];
-  const url =
-    apiUrl +
-    "?module=contract" +
-    "&action=getsourcecode" +
-    `&address=${contractAddress}` +
-    `&apikey=${explorerApiKeys[apiName]}`;
-
+  const apiKeyClause = useApiKey ? `&apikey=${explorerApiKeys[apiName]}` : ``;
+  const url = `${apiUrl}?module=contract&action=getsourcecode&address=${contractAddress}${apiKeyClause}`;
   const response = (await fetch(url)) as types.ContractSourceResponse;
 
   assert(
-    response.message === "OK",
+    response.message.substring(0, 2) === "OK",
     "Failed to fetch contract source\n" + prettyStringify(response)
   );
 
@@ -130,10 +126,10 @@ export interface ContractInfo
   extends StrictOmit<
     types.ContractInfo,
     "SourceCode" | "ABI" | "Implementation"
-  > {}
+  > { }
 
 export interface FileContents
-  extends Record<types.FilePath, types.FileContent> {}
+  extends Record<types.FilePath, types.FileContent> { }
 
 function contractNotVerifiedErrorMsg(
   apiName: ApiName,
