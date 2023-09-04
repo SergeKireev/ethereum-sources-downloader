@@ -46,6 +46,8 @@ apiName is one of:
  - cronoscan
  - moonbeam
  - aurora
+ - basescan
+ - goerli.basescan
 
  contractAddress in hexadecimal format (i.e 0x1F98431c8aD98523631AE4a59f267346ea31F984)
 
