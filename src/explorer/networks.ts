@@ -22,8 +22,10 @@ export const explorerApiUrls = {
   snowtrace: "https://api.snowtrace.io/api",
   "testnet.snowtrace": "https://api-testnet.snowtrace.io/api",
   cronoscan: "https://api.cronoscan.com/api",
-  moonbeam: 'https://api-moonbeam.moonscan.io/api',
-  aurora: 'https://api.aurorascan.dev/api'
+  moonbeam: "https://api-moonbeam.moonscan.io/api",
+  aurora: "https://api.aurorascan.dev/api",
+  basescan: "https://api.basescan.org/api",
+  "goerli.basescan": "https://api-goerli.basescan.org"
 };
 
 /**
@@ -55,8 +57,10 @@ export const networkNames: Record<ApiName, string> = {
   snowtrace: "avalanche",
   "testnet.snowtrace": "avalancheTestnet",
   cronoscan: "cronos",
-  moonbeam: 'moonbeam',
-  aurora: 'aurora'
+  moonbeam: "moonbeam",
+  aurora: "aurora",
+  basescan: "basescan",
+  "goerli.basescan": "basescanGoerli"
 };
 
 const ETHERSCAN_KEY = "862Y3WJ4JB4B34PZQRFEV3IK6SZ8GNR9N5";
@@ -70,6 +74,7 @@ const POLYGONSCAN_KEY = "RV4YXDXEMIHXMC7ZXB8T82G4F56FRZ1SZQ";
 const CRONOSCAN_KEY = "BGAN1CWT8E1A2XRS3FU61UP7XXFMHBWNSY";
 const MOONBEAM_KEY = "FENPKQI49RF2P916SQ2J58BTDMU69PQY8Y";
 const AURORA_KEY = "F2JS84SQHM53V4T3AN2CSX6ZHUAXFSHJ8Y";
+const BASESCAN_KEY = "ICQQDUA1C8R2EZY6M4QIIV7WUEZM8INNA7";
 
 export const explorerApiKeys: Record<ApiName, string> = {
   etherscan: ETHERSCAN_KEY,
@@ -101,5 +106,8 @@ export const explorerApiKeys: Record<ApiName, string> = {
 
   cronoscan: CRONOSCAN_KEY,
   moonbeam: MOONBEAM_KEY,
-  aurora: AURORA_KEY
+  aurora: AURORA_KEY,
+
+  basescan: BASESCAN_KEY,
+  'goerli.basescan': BASESCAN_KEY
 };
