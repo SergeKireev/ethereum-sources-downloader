@@ -1,7 +1,7 @@
 {
   "name": "ethereum-sources-downloader",
   "license": "MIT",
-  "version": "0.1.14",
+  "version": "0.1.19",
   "bin": {
     "ethereum-sources-downloader": "dist/index.js"
   },

@@ -60,6 +60,7 @@ export const networkNames: Record<ApiName, string> = {
 };
 
 const ETHERSCAN_KEY = "862Y3WJ4JB4B34PZQRFEV3IK6SZ8GNR9N5";
+const OPTIMISM_KEY = "9MYGJVEVBDFF7XQF9IY15CZNM636S6NJGV";
 const BSCSCAN_KEY = "HFUM7BBA5MRUQCN5UMEQPUZBUPPRHIQT3Y";
 const FTMSCAN_KEY = "EH9NPZVF1HMNAQMAUZKA4VF7EC23X37DGS";
 const HECOINFO_KEY = "XEUTJF2439EP4HHD23H2AFEFQJHFGSG57R";
@@ -77,8 +78,8 @@ export const explorerApiKeys: Record<ApiName, string> = {
   "goerli.etherscan": ETHERSCAN_KEY,
   "kovan.etherscan": ETHERSCAN_KEY,
 
-  "optimistic.etherscan": ETHERSCAN_KEY,
-  "kovan-optimistic.etherscan": ETHERSCAN_KEY,
+  "optimistic.etherscan": OPTIMISM_KEY,
+  "kovan-optimistic.etherscan": OPTIMISM_KEY,
 
   arbiscan: ARBISCAN_KEY,
   "testnet.arbiscan": ARBISCAN_KEY,
