@@ -6,6 +6,7 @@ export const explorerApiUrls = {
   "ropsten.etherscan": "https://api-ropsten.etherscan.io/api",
   "rinkeby.etherscan": "https://api-rinkeby.etherscan.io/api",
   "goerli.etherscan": "https://api-goerli.etherscan.io/api",
+  "sepolia.etherscan": "https://api-sepolia.etherscan.io/api",
   "kovan.etherscan": "https://api-kovan.etherscan.io/api",
   bscscan: "https://api.bscscan.com/api",
   "testnet.bscscan": "https://api-testnet.bscscan.com/api",
@@ -25,7 +26,8 @@ export const explorerApiUrls = {
   moonbeam: "https://api-moonbeam.moonscan.io/api",
   aurora: "https://api.aurorascan.dev/api",
   basescan: "https://api.basescan.org/api",
-  "goerli.basescan": "https://api-goerli.basescan.org"
+  "goerli.basescan": "https://api-goerli.basescan.org",
+  "sepolia.basescan": "https://api-sepolia.basescan.org/api"
 };
 
 /**
@@ -41,6 +43,7 @@ export const networkNames: Record<ApiName, string> = {
   "ropsten.etherscan": "ropsten",
   "rinkeby.etherscan": "rinkeby",
   "goerli.etherscan": "goerli",
+  "sepolia.etherscan": "sepolia",
   "kovan.etherscan": "kovan",
   bscscan: "bsc",
   "testnet.bscscan": "bscTestnet",
@@ -60,7 +63,8 @@ export const networkNames: Record<ApiName, string> = {
   moonbeam: "moonbeam",
   aurora: "aurora",
   basescan: "basescan",
-  "goerli.basescan": "basescanGoerli"
+  "goerli.basescan": "basescanGoerli",
+  "sepolia.basescan": "basescanSepolia"
 };
 
 const ETHERSCAN_KEY = "862Y3WJ4JB4B34PZQRFEV3IK6SZ8GNR9N5";
@@ -81,6 +85,7 @@ export const explorerApiKeys: Record<ApiName, string> = {
   "ropsten.etherscan": ETHERSCAN_KEY,
   "rinkeby.etherscan": ETHERSCAN_KEY,
   "goerli.etherscan": ETHERSCAN_KEY,
+  "sepolia.etherscan": ETHERSCAN_KEY,
   "kovan.etherscan": ETHERSCAN_KEY,
 
   "optimistic.etherscan": OPTIMISM_KEY,
@@ -109,5 +114,6 @@ export const explorerApiKeys: Record<ApiName, string> = {
   aurora: AURORA_KEY,
 
   basescan: BASESCAN_KEY,
-  'goerli.basescan': BASESCAN_KEY
+  'goerli.basescan': BASESCAN_KEY,
+  'sepolia.basescan': BASESCAN_KEY
 };
