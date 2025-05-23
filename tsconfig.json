@@ -9,6 +9,8 @@
     "target": "es6",
     "rootDir": "src",
     "outDir": "dist",
+    "types": ["node"],
+    "skipLibCheck": true, // This can help skip problematic lib checks
     "lib": [
       "ES2016",
       "ES2017.Object",

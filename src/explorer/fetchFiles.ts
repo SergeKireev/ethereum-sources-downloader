@@ -6,7 +6,7 @@ import { prettyStringify } from "../util/stringify";
 import * as types from "./api-types";
 import { apiUrlToWebsite } from "./apiUrlToWebsite";
 import { fileExtension } from "./fileExtension";
-import { ApiName, explorerApiKeys, explorerApiUrls } from "./networks";
+import { ApiName, explorerApiKeys, explorerApiUrls, NetworkIdV2, V2ApiUrl } from "./networks";
 
 interface FetchFilesOptions {
   /**
@@ -20,15 +20,75 @@ interface FetchFilesOptions {
   proxyDepth?: number;
 }
 
+function buildV2Url(
+  networkId: string,
+  contractAddress: string,
+  apiKey: string
+): string {
+  const url = new URL(V2ApiUrl);
+
+  url.searchParams.set('chainid', networkId);
+  url.searchParams.set('module', 'contract');
+  url.searchParams.set('action', 'getsourcecode');
+  url.searchParams.set('address', contractAddress);
+  url.searchParams.set('apikey', apiKey);
+
+  return url.toString();
+}
+
+export async function fetchFilesV2(
+  networkId: NetworkIdV2,
+  contractAddress: string,
+  apiKey: string,
+  fetchFileOptions: FetchFilesOptions = {},
+) {
+  //We need to have these as functions, because fetchFilesHelper calls itself recursively in case of proxy
+  //TODO: We need to find a way to provide correct link to the right block explorer again
+  const buildWebsiteUrl = (address: string) => apiUrlToWebsite(explorerApiUrls["etherscan"]);
+  const buildApiUrl = (address: string) => buildV2Url(networkId, contractAddress, apiKey)
+
+  return fetchFilesHelper(
+    contractAddress,
+    buildApiUrl,
+    buildWebsiteUrl,
+    fetchFileOptions,
+  )
+}
+
 export async function fetchFiles(
   apiName: ApiName,
   contractAddress: string,
-  { fetch = _fetch, proxyDepth = 3 }: FetchFilesOptions = {},
-  useApiKey: boolean = true
+  fetchFileOptions: FetchFilesOptions = {},
+  useApiKey: boolean = true,
+  apiKey?: string
+) {
+  //We need to have these as functions, because fetchFilesHelper calls itself recursively in case of proxy
+
+
+  const buildWebsiteUrl = (address: string) => apiUrlToWebsite(explorerApiUrls[apiName]);
+  const buildApiUrl = (address: string) => {
+    const apiUrl = explorerApiUrls[apiName];
+    const apiKeyClause = useApiKey ? `&apikey=${apiKey || explorerApiKeys[apiName]}` : ``;
+    const url = `${apiUrl}?module=contract&action=getsourcecode&address=${contractAddress}${apiKeyClause}`;
+    return url;
+  }
+
+  return fetchFilesHelper(
+    contractAddress,
+    buildApiUrl,
+    buildWebsiteUrl,
+    fetchFileOptions,
+  )
+}
+
+async function fetchFilesHelper(
+  contractAddress: string,
+  buildApiUrl: (address: string) => string,
+  buildWebsiteUrl: (address: string) => string,
+  { fetch = _fetch, proxyDepth = 3 }: FetchFilesOptions = {}
 ): Promise<FetchFilesResult> {
-  const apiUrl = explorerApiUrls[apiName];
-  const apiKeyClause = useApiKey ? `&apikey=${explorerApiKeys[apiName]}` : ``;
-  const url = `${apiUrl}?module=contract&action=getsourcecode&address=${contractAddress}${apiKeyClause}`;
+  const url = buildApiUrl(contractAddress);
+
   const response = (await fetch(url)) as types.ContractSourceResponse;
 
   assert(
@@ -53,7 +113,7 @@ export async function fetchFiles(
   ) {
     return {
       files: {
-        "error.md": contractNotVerifiedErrorMsg(apiName, contractAddress),
+        "error.md": contractNotVerifiedErrorMsg(buildWebsiteUrl, contractAddress),
       },
       info,
     };
@@ -86,7 +146,10 @@ export async function fetchFiles(
     proxyDepth > 0 &&
     implementationAddr !== contractAddress
   ) {
-    const implementation = await fetchFiles(apiName, implementationAddr, {
+    const implementation = await fetchFilesHelper(
+      implementationAddr,
+      buildApiUrl,
+      buildWebsiteUrl, {
       fetch,
       proxyDepth: proxyDepth - 1,
     });
@@ -132,10 +195,10 @@ export interface FileContents
   extends Record<types.FilePath, types.FileContent> { }
 
 function contractNotVerifiedErrorMsg(
-  apiName: ApiName,
+  buildWebsiteUrl: (address: string) => string,
   contractAddress: string
 ) {
-  const websiteUrl = apiUrlToWebsite(explorerApiUrls[apiName]);
+  const websiteUrl = buildWebsiteUrl(contractAddress);
   return `\
 Oops! It seems this contract source code is not verified on ${websiteUrl}.
 
