@@ -17,7 +17,7 @@ function validateSupportedNetworkV2(_networkId: string): void {
   } catch (e) {
     throw new Error(`In Etherscan V2 API, Network id should be the chain id`)
   }
-  const found = Object.keys(v2SupportedNetworks).find((_, supportedNetworkId: number) => supportedNetworkId === networkId)
+  const found = explorer_1.v2SupportedNetworks.hasOwnProperty(String(networkId)) ? String(networkId) : undefined;
   if (!found) {
     throw new Error(`Network id ${_networkId} is not supported, supported network ids are ${Object.keys(v2SupportedNetworks)}`);
   }
